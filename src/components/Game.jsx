@@ -9,7 +9,17 @@ import forca6 from '../assets/forca6.png';
 import words from '../words';
 
 export default function Game(props) {
-   const { setWordToBeDiscovered, userWord, setUserWord, errors, setErrors, setLettersUsed } = props;
+   const {
+      wordToBeDiscovered,
+      setWordToBeDiscovered,
+      userWord,
+      setUserWord,
+      errors,
+      setErrors,
+      setLettersUsed,
+      isGameOver,
+      setIsGameOver,
+   } = props;
 
    const images = [forca0, forca1, forca2, forca3, forca4, forca5, forca6];
 
@@ -21,6 +31,7 @@ export default function Game(props) {
       setUserWord(underscoredWord);
       setErrors(0);
       setLettersUsed([]);
+      setIsGameOver(false);
 
       console.log(randomWord);
    }
@@ -29,7 +40,9 @@ export default function Game(props) {
       <Container>
          <Image src={images[errors]} alt='=Forca' />
          <ChooseWordButton onClick={chooseWord}>Escolher Palavra</ChooseWordButton>
-         <Word>{userWord}</Word>
+         <Word isGameOver={isGameOver} errors={errors} userWord={userWord}>
+            {errors === 6 ? wordToBeDiscovered : userWord}
+         </Word>
       </Container>
    );
 }
@@ -65,4 +78,5 @@ const Word = styled.div`
    font-size: 50px;
    font-weight: 700;
    font-family: 'Noto Sans', Helvetica, Sans-Serif;
+   color: ${(props) => (props.isGameOver ? (props.errors === 6 ? '#FF0000' : '#27AE60') : '#000000')};
 `;

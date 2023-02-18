@@ -10,17 +10,21 @@ function App() {
    const [userWord, setUserWord] = useState([]);
    const [lettersUsed, setLettersUsed] = useState(alphabet);
    const [errors, setErrors] = useState(0);
+   const [isGameOver, setIsGameOver] = useState(false);
 
    return (
       <Container>
          <GlobalStyle />
          <Game
+            wordToBeDiscovered={wordToBeDiscovered}
             setWordToBeDiscovered={setWordToBeDiscovered}
             userWord={userWord}
             setUserWord={setUserWord}
             errors={errors}
             setErrors={setErrors}
             setLettersUsed={setLettersUsed}
+            isGameOver={isGameOver}
+            setIsGameOver={setIsGameOver}
          />
          <Letters
             lettersUsed={lettersUsed}
@@ -30,6 +34,7 @@ function App() {
             setUserWord={setUserWord}
             errors={errors}
             setErrors={setErrors}
+            setIsGameOver={setIsGameOver}
          />
       </Container>
    );
