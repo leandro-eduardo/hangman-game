@@ -1,11 +1,37 @@
+import alphabet from '../alphabet';
 import styled from 'styled-components';
 
 export default function Letters(props) {
-   const { alphabet, gameState } = props;
+   const { lettersUsed, setLettersUsed, wordToBeDiscovered, userWord, setUserWord, errors, setErrors } =
+      props;
+
+   function clickLetter(clickedLetter) {
+      setLettersUsed([...lettersUsed, clickedLetter]);
+      if (wordToBeDiscovered.includes(clickedLetter)) {
+         correctLetter(clickedLetter);
+      } else {
+         wrongLetter();
+      }
+   }
+
+   function correctLetter(clickedLetter) {
+      const newUserWord = [...userWord];
+      wordToBeDiscovered.forEach((letter, index) => {
+         if (wordToBeDiscovered[index] === clickedLetter) {
+            newUserWord[index] = letter; // or clickedLetter
+         }
+      });
+      setUserWord(newUserWord);
+   }
+
+   function wrongLetter() {
+      setErrors(errors + 1);
+   }
+
    return (
       <Container>
          {alphabet.map((letter, index) => (
-            <Letter disabled={gameState === 'initial' ? true : false} key={index} gameState={gameState}>
+            <Letter key={index} disabled={lettersUsed.includes(letter)} onClick={() => clickLetter(letter)}>
                {letter.toUpperCase()}
             </Letter>
          ))}
@@ -29,8 +55,8 @@ const Letter = styled.button`
    height: 40px;
    font-weight: 700;
    font-size: 16px;
-   color: ${(props) => (props.gameState === 'initial' ? '#798A9F' : '#39739d')};
-   background-color: ${(props) => (props.gameState === 'initial' ? '#9FAAB5' : '#e1ecf4;')};
+   color: ${(props) => (props.disabled ? '#798A9F' : '#39739d')};
+   background-color: ${(props) => (props.disabled ? '#9FAAB5' : '#e1ecf4;')};
    border-radius: 3px;
    border: 1px solid #7aa7c7;
    cursor: pointer;

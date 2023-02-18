@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import styled from 'styled-components';
 import forca0 from '../assets/forca0.png';
 import forca1 from '../assets/forca1.png';
@@ -10,12 +9,9 @@ import forca6 from '../assets/forca6.png';
 import words from '../words';
 
 export default function Game(props) {
-   const { gameState, setWordToBeDiscovered, setGameState } = props;
+   const { setWordToBeDiscovered, userWord, setUserWord, errors, setErrors, setLettersUsed } = props;
 
    const images = [forca0, forca1, forca2, forca3, forca4, forca5, forca6];
-
-   const [errors, setErrors] = useState(0);
-   const [userWord, setUserWord] = useState();
 
    function chooseWord() {
       const randomIndex = Math.floor(Math.random() * words.length);
@@ -23,19 +19,16 @@ export default function Game(props) {
       const underscoredWord = Array(randomWord.length).fill('_ ');
       setWordToBeDiscovered(randomWord);
       setUserWord(underscoredWord);
-      setGameState('started');
       setErrors(0);
+      setLettersUsed([]);
 
       console.log(randomWord);
-      console.log(underscoredWord);
    }
 
    return (
       <Container>
          <Image src={images[errors]} alt='=Forca' />
-         <ChooseWordButton disabled={gameState === 'started' ? true : false} onClick={chooseWord}>
-            Escolher Palavra
-         </ChooseWordButton>
+         <ChooseWordButton onClick={chooseWord}>Escolher Palavra</ChooseWordButton>
          <Word>{userWord}</Word>
       </Container>
    );

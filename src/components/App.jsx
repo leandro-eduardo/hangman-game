@@ -3,50 +3,34 @@ import Letters from './Letters';
 import GlobalStyle from '../styles/globalStyles';
 import styled from 'styled-components';
 import { useState } from 'react';
+import alphabet from '../alphabet';
 
 function App() {
-   const alphabet = [
-      'a',
-      'b',
-      'c',
-      'd',
-      'e',
-      'f',
-      'g',
-      'h',
-      'i',
-      'j',
-      'k',
-      'l',
-      'm',
-      'n',
-      'o',
-      'p',
-      'q',
-      'r',
-      's',
-      't',
-      'u',
-      'v',
-      'w',
-      'x',
-      'y',
-      'z',
-   ];
-
-   const [wordToBeDiscovered, setWordToBeDiscovered] = useState();
-   const [gameState, setGameState] = useState('initial');
+   const [wordToBeDiscovered, setWordToBeDiscovered] = useState([]);
+   const [userWord, setUserWord] = useState([]);
+   const [lettersUsed, setLettersUsed] = useState(alphabet);
+   const [errors, setErrors] = useState(0);
 
    return (
       <Container>
          <GlobalStyle />
          <Game
-            wordToBeDiscovered={wordToBeDiscovered}
             setWordToBeDiscovered={setWordToBeDiscovered}
-            gameState={gameState}
-            setGameState={setGameState}
+            userWord={userWord}
+            setUserWord={setUserWord}
+            errors={errors}
+            setErrors={setErrors}
+            setLettersUsed={setLettersUsed}
          />
-         <Letters gameState={gameState} alphabet={alphabet} />
+         <Letters
+            lettersUsed={lettersUsed}
+            setLettersUsed={setLettersUsed}
+            wordToBeDiscovered={wordToBeDiscovered}
+            userWord={userWord}
+            setUserWord={setUserWord}
+            errors={errors}
+            setErrors={setErrors}
+         />
       </Container>
    );
 }
