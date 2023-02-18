@@ -45,7 +45,6 @@ function App() {
             setWordToBeDiscovered={setWordToBeDiscovered}
             gameState={gameState}
             setGameState={setGameState}
-            alphabet={alphabet}
          />
          <Letters gameState={gameState} alphabet={alphabet} />
       </Container>

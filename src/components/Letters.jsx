@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 
 export default function Letters(props) {
@@ -6,7 +5,7 @@ export default function Letters(props) {
    return (
       <Container>
          {alphabet.map((letter, index) => (
-            <Letter key={index} gameState={gameState}>
+            <Letter disabled={gameState === 'initial' ? true : false} key={index} gameState={gameState}>
                {letter.toUpperCase()}
             </Letter>
          ))}
