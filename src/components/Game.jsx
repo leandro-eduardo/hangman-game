@@ -6,41 +6,16 @@ import forca3 from '../assets/forca3.png';
 import forca4 from '../assets/forca4.png';
 import forca5 from '../assets/forca5.png';
 import forca6 from '../assets/forca6.png';
-import words from '../words';
 
 export default function Game(props) {
-   const {
-      wordToBeDiscovered,
-      setWordToBeDiscovered,
-      gameWord,
-      setGameWord,
-      errors,
-      setErrors,
-      setLettersUsed,
-      isGameOver,
-      setIsGameOver,
-      setWordInput,
-   } = props;
+   const { startGame, wordToBeDiscovered, gameWord, errors, isGameOver } = props;
 
    const images = [forca0, forca1, forca2, forca3, forca4, forca5, forca6];
-
-   function chooseWord() {
-      const randomIndex = Math.floor(Math.random() * words.length);
-      const randomWord = words[randomIndex].split('');
-      const underscoredWord = Array(randomWord.length).fill(' _ ');
-      setWordToBeDiscovered(randomWord);
-      setGameWord(underscoredWord);
-      setErrors(0);
-      setLettersUsed([]);
-      setIsGameOver(false);
-      setWordInput('');
-      console.log(randomWord);
-   }
 
    return (
       <Container>
          <Image src={images[errors]} alt={`Forca ${errors}`} />
-         <ChooseWordButton onClick={chooseWord}>Escolher Palavra</ChooseWordButton>
+         <ChooseWordButton onClick={startGame}>Escolher Palavra</ChooseWordButton>
          <Word isGameOver={isGameOver} errors={errors} gameWord={gameWord}>
             {isGameOver ? wordToBeDiscovered : gameWord}
          </Word>

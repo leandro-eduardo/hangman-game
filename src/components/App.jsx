@@ -5,6 +5,7 @@ import Guess from './Guess';
 import styled from 'styled-components';
 import GlobalStyle from '../styles/globalStyles';
 import alphabet from '../alphabet';
+import words from '../words';
 
 function App() {
    const [wordToBeDiscovered, setWordToBeDiscovered] = useState([]);
@@ -13,6 +14,19 @@ function App() {
    const [errors, setErrors] = useState(0);
    const [isGameOver, setIsGameOver] = useState(false);
    const [wordInput, setWordInput] = useState('');
+
+   function startGame() {
+      const randomIndex = Math.floor(Math.random() * words.length);
+      const randomWord = words[randomIndex].split('');
+      const underscoredWord = Array(randomWord.length).fill(' _ ');
+      setWordToBeDiscovered(randomWord);
+      setGameWord(underscoredWord);
+      setErrors(0);
+      setLettersUsed([]);
+      setIsGameOver(false);
+      setWordInput('');
+      console.log(randomWord);
+   }
 
    function swapSpecialCharacters(arrayWord) {
       let stringWord = '';
@@ -31,16 +45,11 @@ function App() {
       <Container>
          <GlobalStyle />
          <Game
+            startGame={startGame}
             wordToBeDiscovered={wordToBeDiscovered}
-            setWordToBeDiscovered={setWordToBeDiscovered}
             gameWord={gameWord}
-            setGameWord={setGameWord}
             errors={errors}
-            setErrors={setErrors}
-            setLettersUsed={setLettersUsed}
             isGameOver={isGameOver}
-            setIsGameOver={setIsGameOver}
-            setWordInput={setWordInput}
          />
          <Letters
             lettersUsed={lettersUsed}
