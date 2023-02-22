@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import alphabet from '../alphabet';
 
 export default function Guess(props) {
    const {
@@ -8,19 +7,14 @@ export default function Guess(props) {
       wordToBeDiscovered,
       isGameOver,
       setErrors,
-      setLettersUsed,
-      setIsGameOver,
+      swapSpecialCharacters,
+      finishGame,
    } = props;
 
    function guessWord() {
-      const wordToBeDiscoveredConvertedToString = wordToBeDiscovered.join('');
-      if (wordInput !== wordToBeDiscoveredConvertedToString) setErrors(6);
+      if (swapSpecialCharacters(wordInput.split('')) !== swapSpecialCharacters(wordToBeDiscovered))
+         setErrors(6);
       finishGame();
-   }
-
-   function finishGame() {
-      setLettersUsed(alphabet);
-      setIsGameOver(true);
    }
 
    return (

@@ -14,6 +14,19 @@ function App() {
    const [isGameOver, setIsGameOver] = useState(false);
    const [wordInput, setWordInput] = useState('');
 
+   function swapSpecialCharacters(arrayWord) {
+      let stringWord = '';
+      arrayWord.forEach((letter) => {
+         stringWord += letter;
+      });
+      return stringWord.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+   }
+
+   function finishGame() {
+      setLettersUsed(alphabet);
+      setIsGameOver(true);
+   }
+
    return (
       <Container>
          <GlobalStyle />
@@ -37,7 +50,8 @@ function App() {
             setGameWord={setGameWord}
             errors={errors}
             setErrors={setErrors}
-            setIsGameOver={setIsGameOver}
+            swapSpecialCharacters={swapSpecialCharacters}
+            finishGame={finishGame}
          />
          <Guess
             wordInput={wordInput}
@@ -45,8 +59,8 @@ function App() {
             wordToBeDiscovered={wordToBeDiscovered}
             isGameOver={isGameOver}
             setErrors={setErrors}
-            setLettersUsed={setLettersUsed}
-            setIsGameOver={setIsGameOver}
+            swapSpecialCharacters={swapSpecialCharacters}
+            finishGame={finishGame}
          />
       </Container>
    );

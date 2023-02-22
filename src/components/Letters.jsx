@@ -10,12 +10,13 @@ export default function Letters(props) {
       setGameWord,
       errors,
       setErrors,
-      setIsGameOver,
+      swapSpecialCharacters,
+      finishGame,
    } = props;
 
    function clickLetter(clickedLetter) {
       setLettersUsed([...lettersUsed, clickedLetter]);
-      if (wordToBeDiscovered.includes(clickedLetter)) {
+      if (swapSpecialCharacters(wordToBeDiscovered).includes(clickedLetter)) {
          correctLetter(clickedLetter);
       } else {
          wrongLetter();
@@ -25,7 +26,7 @@ export default function Letters(props) {
    function correctLetter(clickedLetter) {
       const newGameWord = [...gameWord];
       wordToBeDiscovered.forEach((letter, index) => {
-         if (wordToBeDiscovered[index] === clickedLetter) {
+         if (swapSpecialCharacters(wordToBeDiscovered)[index] === clickedLetter) {
             newGameWord[index] = letter; // or clickedLetter
          }
       });
@@ -37,11 +38,6 @@ export default function Letters(props) {
       const newErrors = errors + 1;
       setErrors(newErrors);
       if (newErrors === 6) finishGame();
-   }
-
-   function finishGame() {
-      setLettersUsed(alphabet);
-      setIsGameOver(true);
    }
 
    return (
