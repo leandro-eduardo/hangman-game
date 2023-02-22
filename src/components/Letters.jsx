@@ -1,13 +1,13 @@
-import alphabet from '../alphabet';
 import styled from 'styled-components';
+import alphabet from '../alphabet';
 
 export default function Letters(props) {
    const {
       lettersUsed,
       setLettersUsed,
       wordToBeDiscovered,
-      userWord,
-      setUserWord,
+      gameWord,
+      setGameWord,
       errors,
       setErrors,
       setIsGameOver,
@@ -23,28 +23,23 @@ export default function Letters(props) {
    }
 
    function correctLetter(clickedLetter) {
-      const newUserWord = [...userWord];
+      const newGameWord = [...gameWord];
       wordToBeDiscovered.forEach((letter, index) => {
          if (wordToBeDiscovered[index] === clickedLetter) {
-            newUserWord[index] = letter; // or clickedLetter
+            newGameWord[index] = letter; // or clickedLetter
          }
       });
-      setUserWord(newUserWord);
-      if (newUserWord.toString() === wordToBeDiscovered.toString()) {
-         endGame();
-      }
+      setGameWord(newGameWord);
+      if (!newGameWord.includes(' _ ')) finishGame();
    }
 
    function wrongLetter() {
       const newErrors = errors + 1;
       setErrors(newErrors);
-
-      if (newErrors === 6) {
-         endGame();
-      }
+      if (newErrors === 6) finishGame();
    }
 
-   function endGame() {
+   function finishGame() {
       setLettersUsed(alphabet);
       setIsGameOver(true);
    }

@@ -1,13 +1,13 @@
+import { useState } from 'react';
 import Game from './Game';
 import Letters from './Letters';
-import GlobalStyle from '../styles/globalStyles';
 import styled from 'styled-components';
-import { useState } from 'react';
+import GlobalStyle from '../styles/globalStyles';
 import alphabet from '../alphabet';
 
 function App() {
    const [wordToBeDiscovered, setWordToBeDiscovered] = useState([]);
-   const [userWord, setUserWord] = useState([]);
+   const [gameWord, setGameWord] = useState([]);
    const [lettersUsed, setLettersUsed] = useState(alphabet);
    const [errors, setErrors] = useState(0);
    const [isGameOver, setIsGameOver] = useState(false);
@@ -18,8 +18,8 @@ function App() {
          <Game
             wordToBeDiscovered={wordToBeDiscovered}
             setWordToBeDiscovered={setWordToBeDiscovered}
-            userWord={userWord}
-            setUserWord={setUserWord}
+            gameWord={gameWord}
+            setGameWord={setGameWord}
             errors={errors}
             setErrors={setErrors}
             setLettersUsed={setLettersUsed}
@@ -30,8 +30,8 @@ function App() {
             lettersUsed={lettersUsed}
             setLettersUsed={setLettersUsed}
             wordToBeDiscovered={wordToBeDiscovered}
-            userWord={userWord}
-            setUserWord={setUserWord}
+            gameWord={gameWord}
+            setGameWord={setGameWord}
             errors={errors}
             setErrors={setErrors}
             setIsGameOver={setIsGameOver}

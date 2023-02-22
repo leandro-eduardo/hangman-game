@@ -12,8 +12,8 @@ export default function Game(props) {
    const {
       wordToBeDiscovered,
       setWordToBeDiscovered,
-      userWord,
-      setUserWord,
+      gameWord,
+      setGameWord,
       errors,
       setErrors,
       setLettersUsed,
@@ -26,9 +26,9 @@ export default function Game(props) {
    function chooseWord() {
       const randomIndex = Math.floor(Math.random() * words.length);
       const randomWord = words[randomIndex].split('');
-      const underscoredWord = Array(randomWord.length).fill('_ ');
+      const underscoredWord = Array(randomWord.length).fill(' _ ');
       setWordToBeDiscovered(randomWord);
-      setUserWord(underscoredWord);
+      setGameWord(underscoredWord);
       setErrors(0);
       setLettersUsed([]);
       setIsGameOver(false);
@@ -38,10 +38,10 @@ export default function Game(props) {
 
    return (
       <Container>
-         <Image src={images[errors]} alt='=Forca' />
+         <Image src={images[errors]} alt={`Forca ${errors}`} />
          <ChooseWordButton onClick={chooseWord}>Escolher Palavra</ChooseWordButton>
-         <Word isGameOver={isGameOver} errors={errors} userWord={userWord}>
-            {errors === 6 ? wordToBeDiscovered : userWord}
+         <Word isGameOver={isGameOver} errors={errors} gameWord={gameWord}>
+            {errors === 6 ? wordToBeDiscovered : gameWord}
          </Word>
       </Container>
    );
