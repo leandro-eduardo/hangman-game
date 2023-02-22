@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Game from './Game';
 import Letters from './Letters';
+import Guess from './Guess';
 import styled from 'styled-components';
 import GlobalStyle from '../styles/globalStyles';
 import alphabet from '../alphabet';
@@ -11,6 +12,7 @@ function App() {
    const [lettersUsed, setLettersUsed] = useState(alphabet);
    const [errors, setErrors] = useState(0);
    const [isGameOver, setIsGameOver] = useState(false);
+   const [wordInput, setWordInput] = useState('');
 
    return (
       <Container>
@@ -25,6 +27,7 @@ function App() {
             setLettersUsed={setLettersUsed}
             isGameOver={isGameOver}
             setIsGameOver={setIsGameOver}
+            setWordInput={setWordInput}
          />
          <Letters
             lettersUsed={lettersUsed}
@@ -34,6 +37,15 @@ function App() {
             setGameWord={setGameWord}
             errors={errors}
             setErrors={setErrors}
+            setIsGameOver={setIsGameOver}
+         />
+         <Guess
+            wordInput={wordInput}
+            setWordInput={setWordInput}
+            wordToBeDiscovered={wordToBeDiscovered}
+            isGameOver={isGameOver}
+            setErrors={setErrors}
+            setLettersUsed={setLettersUsed}
             setIsGameOver={setIsGameOver}
          />
       </Container>

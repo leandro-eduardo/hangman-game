@@ -19,6 +19,7 @@ export default function Game(props) {
       setLettersUsed,
       isGameOver,
       setIsGameOver,
+      setWordInput,
    } = props;
 
    const images = [forca0, forca1, forca2, forca3, forca4, forca5, forca6];
@@ -32,7 +33,7 @@ export default function Game(props) {
       setErrors(0);
       setLettersUsed([]);
       setIsGameOver(false);
-
+      setWordInput('');
       console.log(randomWord);
    }
 
@@ -41,7 +42,7 @@ export default function Game(props) {
          <Image src={images[errors]} alt={`Forca ${errors}`} />
          <ChooseWordButton onClick={chooseWord}>Escolher Palavra</ChooseWordButton>
          <Word isGameOver={isGameOver} errors={errors} gameWord={gameWord}>
-            {errors === 6 ? wordToBeDiscovered : gameWord}
+            {isGameOver ? wordToBeDiscovered : gameWord}
          </Word>
       </Container>
    );

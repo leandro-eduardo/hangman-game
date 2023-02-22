@@ -56,7 +56,7 @@ export default function Letters(props) {
 }
 
 const Container = styled.div`
-   width: 690px;
+   width: 664px;
    display: flex;
    align-self: center;
    flex-wrap: wrap;
