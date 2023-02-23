@@ -51,7 +51,7 @@ const Input = styled.input`
    box-shadow: 2px 2px 5px 0px #00000040;
    outline: none;
    padding: 10px;
-   font-size: 16px;
+   font-size: 18px;
 `;
 
 const Button = styled.button`
@@ -63,5 +63,5 @@ const Button = styled.button`
    background-color: ${(props) => (props.disabled ? '#9FAAB5' : '#e1ecf4;')};
    font-weight: 700;
    font-size: 16px;
-   cursor: pointer;
+   cursor: ${(props) => (props.disabled ? 'initial' : 'pointer')};
 `;

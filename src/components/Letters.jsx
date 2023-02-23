@@ -71,5 +71,5 @@ const Letter = styled.button`
    background-color: ${(props) => (props.disabled ? '#9FAAB5' : '#e1ecf4;')};
    border-radius: 3px;
    border: 1px solid #7aa7c7;
-   cursor: pointer;
+   cursor: ${(props) => (props.disabled ? 'initial' : 'pointer')};
 `;
