@@ -17,13 +17,24 @@ export default function Guess(props) {
       finishGame();
    }
 
+   function handleChange(event) {
+      setWordInput(event.target.value);
+   }
+
+   function handleKeyDown(event) {
+      if (event.key === 'Enter') {
+         guessWord();
+      }
+   }
+
    return (
       <Container>
          <Span>Já sei a palavra!</Span>
          <Input
             disabled={wordToBeDiscovered.length === 0 || isGameOver ? true : false}
             value={wordInput}
-            onChange={(e) => setWordInput(e.target.value)}
+            onChange={handleChange}
+            onKeyDown={handleKeyDown}
          />
          <Button disabled={wordToBeDiscovered.length === 0 || isGameOver ? true : false} onClick={guessWord}>
             Chutar
