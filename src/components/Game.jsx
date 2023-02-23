@@ -27,11 +27,21 @@ const Container = styled.div`
    display: flex;
    justify-content: space-between;
    position: relative;
+   @media (max-width: 850px) {
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+   }
 `;
 
 const Image = styled.img`
    width: 400px;
    height: 450px;
+   @media (max-width: 850px) {
+      max-width: 400px;
+      width: 100%;
+      height: 100%;
+   }
 `;
 
 const ChooseWordButton = styled.button`
@@ -51,8 +61,12 @@ const Word = styled.div`
    position: absolute;
    right: 10px;
    bottom: 10px;
-   font-size: 50px;
+   font-size: 40px;
    font-weight: 700;
    font-family: 'Noto Sans', Helvetica, Sans-Serif;
    color: ${(props) => (props.isGameOver ? (props.errors === 6 ? '#FF0000' : '#27AE60') : '#000000')};
+   @media (max-width: 850px) {
+      position: initial;
+      font-size: 30px;
+   }
 `;

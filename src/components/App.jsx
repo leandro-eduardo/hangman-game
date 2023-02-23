@@ -82,6 +82,10 @@ const Container = styled.div`
    gap: 60px;
    max-width: 1100px;
    margin: 0 auto;
+   @media (max-width: 850px) {
+      padding: 20px;
+      gap: 40px;
+   }
 `;
 
 export default App;

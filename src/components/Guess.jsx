@@ -48,6 +48,10 @@ const Container = styled.div`
    align-self: center;
    gap: 15px;
    align-items: center;
+   @media (max-width: 850px) {
+      flex-direction: column;
+      width: 100%;
+   }
 `;
 
 const Span = styled.span`
@@ -63,6 +67,10 @@ const Input = styled.input`
    outline: none;
    padding: 10px;
    font-size: 18px;
+   @media (max-width: 850px) {
+      width: 100%;
+      max-width: 350px;
+   }
 `;
 
 const Button = styled.button`

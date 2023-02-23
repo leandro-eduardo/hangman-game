@@ -57,6 +57,10 @@ const Container = styled.div`
    align-self: center;
    flex-wrap: wrap;
    gap: 12px;
+   @media (max-width: 850px) {
+      width: 100%;
+      justify-content: center;
+   }
 `;
 
 const Letter = styled.button`
